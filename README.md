@@ -45,7 +45,12 @@
 
 ### Selector Naming
 * * *
-  CSS selector naming should be `-` dash separated and give preference to classes over ID's
+  CSS selector naming should be `-` dash separated and give precedence to classes over ID's. Prefix any global selectors with `pl-`
+  ```html
+  <!-- Totes -->
+  <div class="pl-header"></div>
+  <div class="pl-footer"></div>
+  ```
 ```html
 <!-- Nein -->
 <div class="theBlueBox"></div>
