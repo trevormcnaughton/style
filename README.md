@@ -37,14 +37,17 @@
 │   │   │   │   └── _forms.scss
 │   ├── img
 │   │   ├──  ui
+│   │   │  ├──  1x
+│   │   │  └──  2x
 │   │   └──  static
+│   │   │  ├──  1x
+│   │   │  └──  2x
 │   ├── fonts
 │   │   └──  icons
 │   ├── index.html
 │   ├── js
 │   │   ├── lib
-│   │   └── templates
-│   └── templates
+│   │   └── main.js
 ```
 **<sub>[Back to top](#outline)</sub>**
 
