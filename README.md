@@ -3,14 +3,12 @@
 
 ## Outline<a name='outline'> </a>
 
-  1. [Resources & Background](#resources)
   1. [Project Settings](#project_settings)
-  1. [HTML Markup](#markup)
+  1. [Coding Style](#css)
   1. [CSS](#css)
-      - [Preprocessors](#preprocessors)  
+      - [Sass Best Practices](#sass-practices)  
       - [Variable Naming](#css-variable-naming)  
-      - [File Prep](#css-file-prep)
-      - [Patterns](#css-patterns)  
+      - [@import-ing and _partials](#css-file-prep)
   1. [Javascript](#js)
       - [Patterns](#js-patterns)
       - [Frameworks & Libraries](#js-libraries)
@@ -20,8 +18,7 @@
 ## Project Settings <a name='project_settings'> </a>
 
   The project scaffolding will vary depending on the type of application and its scope. The client-side code should however, remain consistent.
-  
-  The following demonstrates a basic WCST project structure:
+ 
 ```unicode
 ├── public
 │   ├── css
@@ -40,9 +37,10 @@
 ```
 **<sub>[Back to top](#outline)</sub>**
 
-***
 
+## Coding Style <a name='css'> </a>
 
+### Selector Naming
 * * *
   CSS selector naming should be `-` dash separated and give preference to classes over ID's
 ```html
@@ -58,11 +56,10 @@
 
 * * *
 
-## CSS Coding Style <a name='css'> </a>
-  
-Following [OOCSS](http://oocss.org/) principles improves code comprehension, and improves team-wide maintainability. Concerns for both styling and behavior as dictated by the CSS should be encapsulated and kept D.R.Y.!
+### Style Rules
+Following [OOCSS](http://oocss.org/) for writing CSS improves code comprehension, and improves team-wide maintainability. Concerns for both styling and behavior as dictated by the CSS should be encapsulated and kept D.R.Y.!
 
-### Other Rules
+#### Things to keep in mind
 - Use soft-tabs with a two space indent.
 - Put spaces after : in property declarations.
 - Put spaces before { in rule declarations.
@@ -71,7 +68,7 @@ Following [OOCSS](http://oocss.org/) principles improves code comprehension, and
   
 * * *
   
-  When defining styles of a selector, separate layout/positioning, presentation/type, and functionality within tags. This is a good example (see more about [SASS Code Style](#sass-practices) Below).
+  When defining styles of a selector, separate layout/positioning, presentation/type, and functionality within tags. This is a good example (see more about specific [SASS Best Practices](#sass-practices) Below).
 ```css
   .mr-box {
     position: relative;
@@ -102,8 +99,8 @@ Following [OOCSS](http://oocss.org/) principles improves code comprehension, and
       
 * * *
 ## Pixels vs. Ems
-This one is for Jacob
 
+_This one is for Jacob_
 Use px for font-size, because it offers absolute control over text. Additionally, unit-less line-height is preferred because it does not inherit a percentage value of its parent element, but instead is based on a multiplier of the font-size.
 
 ### Preprocessors & Frameworks <a name='preprocessors'> </a>
@@ -113,7 +110,7 @@ Use px for font-size, because it offers absolute control over text. Additionally
 
 * * *
 
-### SASS Best Practices & Coding Style <a name='sass-practices'> </a>
+### SASS Best Practices <a name='sass-practices'> </a>
 Inspired by on Chris Coyer and Github
 
 - Any $variable or @mixin that is used in more than one file should be put in globals/. Others should be put at the top of the file where they're used.
@@ -153,9 +150,9 @@ Like the OOCSS keep @extend's and @include's grouped.
 .foo {
   @extends %thing;
 
-	color: #FFF;
+  color: #FFF;
 
-	@include border-radius( $global-radius );
+  @include border-radius( $global-radius );
 }
 ```
 List nothing else after nested selectors. Except selectors of the same level.
@@ -171,7 +168,17 @@ List nothing else after nested selectors. Except selectors of the same level.
 }
 ```
 
-
+#### Nest and Name Your Media Queries
+The ability to nest media queries in Sass means 1) you don't have to re-write the selector somewhere else which can be error prone 2) the rules that you are overriding are very clear and obvious, which is usually not the case when they are at the bottom of your CSS or in a different file.
+```scss
+.sidebar {
+  float: right;
+  width: 33.33%;
+  @include bp(small) {
+    width: 25%;
+  }
+}
+```
 
 #### Variable Naming <a name='css-variable-naming'> </a>
   
@@ -215,37 +222,42 @@ List nothing else after nested selectors. Except selectors of the same level.
 
 * * *
 
-#### File Prep <a name='css-file-prep'> </a>
-Compile all SCSS libraries, files, and partials into one main.scss file. Start with any framework or libraries first, then normalizer, settings, utilities, global boilerplates, main theme files, then shame last.
+### @import-ing and _partial structure <a name='css-file-prep'> </a>
+List Vendor/Global Dependancies First, Then Author Dependancies, Then Patterns, Then Parts, Shame Last. All compiles into the main.scss file.
 
 ```scss
 
-//Libraries
+// Vendor Dependencies 
 @import "compass";
-@import "compass/css3";
 
-//Normalizer
-@import "normalizer";
+// Authored Dependencies 
+@import "global/colors";
+@import "global/mixins";
 
-//Settings & Utilities
-@import "global-settings";
-@import "global-utilities";
+// Patterns
+@import "global/tabs";
+@import "global/modals";
 
-//PL Boilerplates
-@import "pl-forms";
-@import "pl-buttons";
-@import "pl-grid";
-
-//Theme Files
-@import "pl-sell-site";
-
-//Shame on you
-@import "shame";
+// Sections
+@import "global/header";
+@import "global/footer";
 
 ```
-**<sub>[Back to top](#outline)</sub>**
 
+#### Break into as many small parts as needed
+This allows us to modularize our builds allowing them to be more flexible. Just remember to stay DRY. 
+
+```scss
+@import "global/header/header/";
+@import "global/header/logo/";
+@import "global/header/dropdowns/";
+@import "global/header/nav/";
+@import "global/header/really-specific-thingy/";
+```
+
+**<sub>[Back to top](#outline)</sub>**
 * * *
+
 
 
 ## Javascript <a name='js'> </a>
