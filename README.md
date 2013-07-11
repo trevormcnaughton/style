@@ -25,8 +25,16 @@
 │   │   ├── compiled
 │   │   │   └── main.css
 │   │   └── scss
-│   │       ├── _settings.scss
-│   │       └── main.scss
+│   │       ├── main.scss
+│   │   │   └── global
+│   │   │   │	├── components
+│   │   │   │   │   ├── _header.scss
+│   │   │   │   │   └── _footer.scss
+│   │   │   │   ├── _settings.scss
+│   │   │   │   ├── _grid.scss
+│   │   │   │   ├── _typography.scss
+│   │   │   │   ├── _buttons.scss
+│   │   │   │   └── _forms.scss
 │   ├── img
 │   │   ├──  ui
 │   │   └──  static
