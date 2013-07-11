@@ -22,13 +22,16 @@
 ```unicode
 ├── public
 │   ├── css
-│   │   ├── app
-│   │   │   └── app.css
+│   │   ├── compiled
+│   │   │   └── main.css
 │   │   └── scss
 │   │       ├── _settings.scss
-│   │       └── app.scss
+│   │       └── main.scss
 │   ├── img
-│   │   └── ui
+│   │   ├──  ui
+│   │   └──  static
+│   ├── fonts
+│   │   └──  icons
 │   ├── index.html
 │   ├── js
 │   │   ├── lib
